@@ -1,42 +1,35 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+/* eslint-disable no-unused-vars */
+import React from "react";
+import { useSelector } from "react-redux";
+import store from "../utils/Store";
+import MenuItem from "./MenuItem";
+import { NavMenuList } from "../utils/help";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
-    const isMenuOpen=useSelector(store=>store.app.isMenuOpen);
 
-    if(!isMenuOpen) {
-        return null;
-    }
-  return (
-    <div className=' w-32  shadow-2xl'>
-        <h1>Sidebar</h1>
-        <ul>
-            <li>Home</li>
-            <li>Shorts</li>
-            <li>videos</li>
-            <li>Live</li>
-        </ul>
+	const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
-        <h4 className='text-xl'>Subscriptions</h4>
-        <ul className='my-2'>
-            <li>
-                Music
-            </li>
-            <li>Sports</li>
-            <li>Gaming</li>
-            <li>Movies</li>
-        </ul>
-        <ul className='my-2'>
-            <li>
-                Music
-            </li>
-            <li>Sports</li>
-            <li>Gaming</li>
-            <li>Movies</li>
-        </ul>
-        
-        </div>
-  )
-}
+	return !isMenuOpen ? null : (
+		<div className=" hidden md:block h-full dark:bg-slate-800 dark:text-slate-100 static ">
+			<div className=" flex flex-col px-5 z-10 overflow-y-auto ">
+				{NavMenuList.map((items, index) => {
+					return (
+						<div key={index}>
+							<Link to={items.action}>
+							<MenuItem
+								text={items.text}
+								icon={items.icon}
+							/></Link>
+							{items.divider && (
+								<hr className=" my-5 border-gray-200" />
+							)}
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
+};
 
-export default SideBar
+export default SideBar;
