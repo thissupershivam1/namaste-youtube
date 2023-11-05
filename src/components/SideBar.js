@@ -11,7 +11,7 @@ const SideBar = () => {
 	const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
 	return !isMenuOpen ? null : (
-		<div className=" hidden md:block h-full dark:bg-slate-800 dark:text-slate-100 static ">
+		<div className=" hidden md:block h-full bg-[#0f0f0f]  dark:text-slate-100 static z-40 ">
 			<div className=" flex flex-col px-5 z-10 overflow-y-auto ">
 				{NavMenuList.map((items, index) => {
 					return (

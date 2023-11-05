@@ -1,10 +1,13 @@
 import React from 'react'
 import ButtonList from './ButtonList'
 import VideoContainer from './VideoContainer'
+import { useSelector } from "react-redux";
 
+let visible=false;
 const MainContainer = () => {
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   return (
-    <div className=' w-full '>
+    <div className={`w-full ${isMenuOpen?'fixed opacity-95':null}`}>
       <ButtonList/>
       <VideoContainer/>
     </div>

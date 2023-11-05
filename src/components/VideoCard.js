@@ -58,7 +58,7 @@ const VideoCard = ({ videoInfo }) => {
 				</div>
 
 				{/* title */}
-				<div className="flex flex-col text-black ml-3 overflow-hidden">
+				<div className="flex flex-col text-white/[0.7] ml-3 overflow-hidden">
 					<span className="text-sm font-semibold line-clamp-2">
 						{title}
 					</span>
