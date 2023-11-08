@@ -17,6 +17,7 @@ const SearchResultsPage = () => {
   useEffect(()=>{
     getSearchData();
     dispatcher(closeMenu())
+    console.log(query)
   },[query])
 
   const getSearchData=async ()=>{
@@ -26,7 +27,7 @@ const SearchResultsPage = () => {
   } 
 
   return (
-    <div className='p-2 w-full  overflow-y-hidden'>
+    <div className=' w-full  overflow-y-hidden'>
       {
         searchresults.map((result)=> <Link 
         key={result?.id?.videoId} 

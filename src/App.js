@@ -4,7 +4,7 @@ import Body from './components/Body';
 import Header from './components/Header';
 import store from './utils/Store';
 import { Provider } from 'react-redux';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Outlet, Router, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import MainContainer from './components/MainContainer';
 import WatchPage from './components/WatchPage';
 import { Suspense, lazy } from 'react';
@@ -66,7 +66,6 @@ export default App;
 //   {
 //     path: '/',
 //     element : <App />,
-//     errorElement : <></>,
 //     children:[
 //       {
 //         path: "/",

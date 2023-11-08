@@ -7,7 +7,8 @@ let visible=false;
 const MainContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   return (
-    <div className={`w-full ${isMenuOpen?'fixed opacity-95':null}`}>
+    <div className={`w-full ${isMenuOpen ? 'fixed bg-opacity-50' : 'null'}`}>
+
       <ButtonList/>
       <VideoContainer/>
     </div>

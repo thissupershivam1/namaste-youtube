@@ -17,7 +17,7 @@ const VideoContainer = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-evenly h-full overflow-y-auto gap-y-2 md:gap-x-2 bg-[#0f0f0f]">
+    <div className="flex flex-wrap justify-evenly  h-full overflow-y-auto gap-y-20 md:gap-x-2 bg-[#0f0f0f]">
       {/* {videos[0] && <AdVideoCard info={videos[0]} />} */}
       {videos.map((video) => (
         <Link key={video.id} to={"/watch?v=" + video.id}>

@@ -6,10 +6,13 @@ import CommentContainer from "./CommentContainer";
 import { abbreviateNumber } from "js-abbreviation-number";
 import RelatedVideos from './RelatedVideos';
 import Store from '../utils/Store';
+import WpageVideoDetails from './WPageVideoDetail';
+import ChatContainer from './ChatContainer';
 import {
 	YOUTUBE_CHANNEL_DETAILS_API,
 	YOUTUBE_VIDEO_DETAILS_API,
 } from "./Constants";
+
 
 const WatchPage = () => {
 
@@ -24,6 +27,7 @@ const WatchPage = () => {
   //   dispatch(closeMenu());
 
   // },[]);
+  const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
 
   const [searchParams] = useSearchParams();
 	const videoId = searchParams.get("v");
@@ -34,6 +38,8 @@ const WatchPage = () => {
 	const channelId = useSelector((store) => store.channel.channelId);
 
 	const dispatch = useDispatch();
+	
+    const [showChat,setShowLiveChat]=useState(false);
 	useEffect(() => {
 		dispatch(closeMenu());
 		getChannelDetails();
@@ -54,27 +60,96 @@ const WatchPage = () => {
 		setVideoDetails(jsonData?.items[0]);
 	};
   return (
-    <div className='flex w-full flex-row justify-between'>
-      <div className='flex flex-col w-1/2 content-center'>
-    <div className='m-2'>
-      <iframe width="800" height="400" src={"https://www.youtube.com/embed/"+searchParams.get("v")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+    
+
+	// <div className='w-full flex justify-between items-center '>
+
+	// 	<div className="left flex flex-col justify-center items-center w-full">
+
+	// 		<div className="videoplayer">
+	// 		<iframe width="800" height="400" src={"https://www.youtube.com/embed/"+searchParams.get("v")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+
+
+	// 		</div>
+	// 		<div className="comment">
+	// 		<WpageVideoDetails videoId={videoId}/>
+
+	// 		</div>
+
+
+
+	// 	</div>
+
+	// 	<div className="right m-1 mx-2   w-full">
+	// 	 <RelatedVideos channelId={videoDetails?.snippet?.channelId} />
+
+
+
+
+	// 	</div>
+
+
+	// </div>
+
+	<div className={`flex w-full flex-row justify-between bg-[#0f0f0f]  ${isMenuOpen ? 'fixed bg-opacity-90' : 'null'}`}>
+
+
+      <div className='flex flex-col w-full content-center'>
+    <div className='m-2 bg-[#131211] flex-grow-9 rounded-xl max-sm:px-1 sm:pr-2  w-screen md:w-[750px]'>
+      {/* <iframe width="800" height="400" src={"https://www.youtube.com/embed/"+searchParams.get("v")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe> */}
+
+	  <iframe
+                data-testid="iframe"
+                    width="100%"
+                    height="450"
+                    src={"https://www.youtube.com/embed/" + searchParams.get("v")+ "?autoplay=1&mute=0"}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className='rounded-xl'
+                >
+                </iframe>
     </div>
 
-    <div className=" dark:text-white relative">
 
-<CommentContainer videoId={videoId} />
+    <div className=" dark:text-white  w-full m-2 p-2">
+
+
+{/* <CommentContainer videoId={videoId} /> */}
+<WpageVideoDetails videoId={videoId}/>
     </div>
     </div>
+
 
    {/* related video & live chat section */}
-   <div className=" m-1 mx-2 ">
-				{/* <LiveChat /> */}
+   {/* <div className=" m-1 mx-2 max-sm:hidden "> */}
+                {/* <LiveChat /> */}
 
-				{/* related video section */}
-				<RelatedVideos channelId={videoDetails?.snippet?.channelId} />
-			</div>
+
+                {/* related video section */}
+                {/* <RelatedVideos channelId={videoDetails?.snippet?.channelId} /> */}
+            {/* </div> */}
+
+			
+
+			  {<div className='col-span-4 p-1 hidden md:block'>
+          <div className='w-full'>
+              {showChat && <ChatContainer />}
+              <div className='w-full flex justify-center rounded-3xl text-white '>
+                  <button data-testid="show-chat" onClick={()=>setShowLiveChat(!showChat)} className='w-full py-2 border rounded-3xl my-2 hover:bg-gray-200 dark:hover:bg-slate-600'>{showChat ? "Hide chat" : "Show chat"}</button>
+              </div>
+          </div>
+          <RelatedVideos channelId={videoDetails?.snippet?.channelId} />
+      </div>
+     }
+			
+			
+
 
 </div>
+
+
 
 
   )

@@ -26,15 +26,15 @@ const SearchVideoCard = ({data}) => {
 
 
   return (
-    <div className='flex max-sm:flex-col flex-row  py-2 bg-slate-800 max-sm:px-10 max-sm:pb-10'>
+    <div className='flex max-sm:flex-col flex-row  py-2 bg-[#131211] max-sm:px-10 max-sm:pb-10'>
       {/* Thumbnail */}
-        <img className="flex justify-center rounded-lg h-40 max-sm:w-full" src={data?.thumbnails?.medium?.url}/>
+        <img className="flex justify-center rounded-2xl h-40 max-sm:w-full p-2" src={data?.thumbnails?.medium?.url}/>
         {/* Video Details */}
         <div className='px-2 w-full flex flex-col'>
-            <span className='font-semibold text-lg dark:text-white'>{data?.title}</span>
-            <p className='text-sm text-slate-600 mb-2 dark:text-slate-300'>{PublishedTimeOfVideo(data?.publishedAt)}</p>
+            <span className='font-semibold text-lg text-white '>{data?.title}</span>
+            <p className='text-sm text-slate-600 mb-2 '>{PublishedTimeOfVideo(data?.publishedAt)}</p>
             <div className='flex items-center'><img className="w-8 my-2 rounded-full" src={imgUrl}></img>
-            <span className='flex items-center px-2 text-slate-700 text-sm dark:text-slate-200 '>{data?.channelTitle}</span>
+            <span className='flex items-center px-2 text-white text-sm '>{data?.channelTitle}</span>
             </div>
             {/* Video Description */}
             <span className='text-sm text-slate-700 dark:text-slate-300'>{data?.description}</span>

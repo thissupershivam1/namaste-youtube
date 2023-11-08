@@ -3,7 +3,7 @@ import Button from './Button'
 
 const ButtonList = () => {
   return (
-    <div className='flex bg-[#0f0f0f]'>
+    <div className='flex max-lg:font-light  max-sm:overflow-x-scroll bg-[#0f0f0f]'>
         <Button name="ALL"/>
         <Button name="Gaming"/>
         <Button name="Web"/>
